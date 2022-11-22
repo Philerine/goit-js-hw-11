@@ -20,24 +20,24 @@ refs.loadMoreBtn.addEventListener('click', onLoadMoreBtn);
 //   refs.loadMoreBtn.classList.add('is-hidden');
 // }
 
-// function onSearch(e) {
-//   e.preventDefault();
-//   clearGallery();
-//   isHiddenLoadMoreBtn();
+function onSearch(e) {
+  e.preventDefault();
+  clearGallery();
+  isHiddenLoadMoreBtn();
 
-//   images.query = e.currentTarget.elements.searchQuery.value.trim();
+  images.query = e.currentTarget.elements.searchQuery.value.trim();
 
   
-//   if (images.query === '') {
-//     Notiflix.Notify.failure('Empty request!');
-//     return;
-//   }
+  if (images.query === '') {
+    Notiflix.Notify.failure('Empty request!');
+    return;
+  }
 
-//   images.resetPage();
+  images.resetPage();
 
-//   const queryImg = true;
-//   createGalleryMarkup(queryImg);
-// }
+  const queryImg = true;
+  createGalleryMarkup(queryImg);
+}
 
 // async function createGalleryMarkup(queryImg = false) {
 //   try {
@@ -107,11 +107,11 @@ refs.loadMoreBtn.addEventListener('click', onLoadMoreBtn);
 //   }
 // }
 
-// async function onLoadMoreBtn() {
-//   const queryImg = false;
-//   await createGalleryMarkup(queryImg);
-//   smoothScroll();
-// }
+async function onLoadMoreBtn() {
+  const queryImg = false;
+  await createGalleryMarkup(queryImg);
+  smoothScroll();
+}
 
 // function showLoadMoreBtn() {
 //   refs.loadMoreBtn.classList.remove('is-hidden');
