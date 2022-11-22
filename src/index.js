@@ -7,115 +7,115 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 
-const images = new ImagesApi();
+// const images = new ImagesApi();
 
-refs.form.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', onLoadMoreBtn);
+// refs.form.addEventListener('submit', onSearch);
+// refs.loadMoreBtn.addEventListener('click', onLoadMoreBtn);
 
-function clearGallery() {
-  refs.gallery.innerHTML = '';
-}
+// function clearGallery() {
+//   refs.gallery.innerHTML = '';
+// }
 
-function isHiddenLoadMoreBtn() {
-  refs.loadMoreBtn.classList.add('is-hidden');
-}
+// function isHiddenLoadMoreBtn() {
+//   refs.loadMoreBtn.classList.add('is-hidden');
+// }
 
-function onSearch(e) {
-  e.preventDefault();
-  clearGallery();
-  isHiddenLoadMoreBtn();
+// function onSearch(e) {
+//   e.preventDefault();
+//   clearGallery();
+//   isHiddenLoadMoreBtn();
 
-  images.query = e.currentTarget.elements.searchQuery.value.trim();
+//   images.query = e.currentTarget.elements.searchQuery.value.trim();
 
   
-  if (images.query === '') {
-    Notiflix.Notify.failure('Empty request!');
-    return;
-  }
+//   if (images.query === '') {
+//     Notiflix.Notify.failure('Empty request!');
+//     return;
+//   }
 
-  images.resetPage();
+//   images.resetPage();
 
-  const queryImg = true;
-  createGalleryMarkup(queryImg);
-}
+//   const queryImg = true;
+//   createGalleryMarkup(queryImg);
+// }
 
-async function createGalleryMarkup(queryImg = false) {
-  try {
-    const data = await images.fetchImages();
-    const { hits, totalHits, page } = data;
-    if (data === null) return;
+// async function createGalleryMarkup(queryImg = false) {
+//   try {
+//     const data = await images.fetchImages();
+//     const { hits, totalHits, page } = data;
+//     if (data === null) return;
 
-    if (hits.length === 0) {
-      Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
-      return;
-    }
+//     if (hits.length === 0) {
+//       Notiflix.Notify.failure(
+//         'Sorry, there are no images matching your search query. Please try again.'
+//       );
+//       return;
+//     }
 
-    if (queryImg) {
-      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-    }
+//     if (queryImg) {
+//       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+//     }
 
-    const markup = hits
-      .map(
-        ({
-          webformatURL,
-          largeImageURL,
-          tags,
-          likes,
-          views,
-          comments,
-          downloads,
-        }) => {
-          return `<a class="photo-card" href="${largeImageURL}">
-    <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-    <div class="info">
-      <p class="info-item">
-        <b>Likes</b>${likes}
-      </p>
-      <p class="info-item">
-        <b>Views</b>${views}
-      </p>
-      <p class="info-item">
-        <b>Comments</b>${comments}
-      </p>
-      <p class="info-item">
-        <b>Downloads</b>${downloads}
-      </p>
-    </div>
-  </a>`;
-        }
-      )
-      .join('');
+//     const markup = hits
+//       .map(
+//         ({
+//           webformatURL,
+//           largeImageURL,
+//           tags,
+//           likes,
+//           views,
+//           comments,
+//           downloads,
+//         }) => {
+//           return `<a class="photo-card" href="${largeImageURL}">
+//     <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+//     <div class="info">
+//       <p class="info-item">
+//         <b>Likes</b>${likes}
+//       </p>
+//       <p class="info-item">
+//         <b>Views</b>${views}
+//       </p>
+//       <p class="info-item">
+//         <b>Comments</b>${comments}
+//       </p>
+//       <p class="info-item">
+//         <b>Downloads</b>${downloads}
+//       </p>
+//     </div>
+//   </a>`;
+//         }
+//       )
+//       .join('');
 
-    refs.gallery.insertAdjacentHTML('beforeend', markup);
+//     refs.gallery.insertAdjacentHTML('beforeend', markup);
 
-    showLoadMoreBtn();
-    new SimpleLightbox('.gallery a', {
-      captionDelay: 250,
-    });
+//     showLoadMoreBtn();
+//     new SimpleLightbox('.gallery a', {
+//       captionDelay: 250,
+//     });
 
-    if (page * 40 >= totalHits) {
-      isHiddenLoadMoreBtn();
+//     if (page * 40 >= totalHits) {
+//       isHiddenLoadMoreBtn();
 
-      Notiflix.Notify.failure(
-        "You've reached the end of search results."
-      );
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
+//       Notiflix.Notify.failure(
+//         "You've reached the end of search results."
+//       );
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-async function onLoadMoreBtn() {
-  const queryImg = false;
-  await createGalleryMarkup(queryImg);
-  smoothScroll();
-}
+// async function onLoadMoreBtn() {
+//   const queryImg = false;
+//   await createGalleryMarkup(queryImg);
+//   smoothScroll();
+// }
 
-function showLoadMoreBtn() {
-  refs.loadMoreBtn.classList.remove('is-hidden');
-}
+// function showLoadMoreBtn() {
+//   refs.loadMoreBtn.classList.remove('is-hidden');
+// }
 
 
 
