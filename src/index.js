@@ -7,10 +7,10 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 
-// const images = new ImagesApi();
+const images = new ImagesApi();
 
-// refs.form.addEventListener('submit', onSearch);
-// refs.loadMoreBtn.addEventListener('click', onLoadMoreBtn);
+refs.form.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMoreBtn);
 
 // function clearGallery() {
 //   refs.gallery.innerHTML = '';
